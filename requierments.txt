@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+w1thermsensor
+gpiozero
+adafruit-circuitpython-lis3dh
+adafruit-blinka
+adafruit-circuitpython-ssd1306
+RPi.GPIO
+pillow
