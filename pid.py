@@ -2,9 +2,7 @@ class PID(object):
     ek_1 = 0.0
     xk_1 = 0.0
     xk_2 = 0.0
-
     yk = 0.0
-
     GMA_HLIM = 100.0
     GMA_LLIM = 0.0
 
@@ -26,16 +24,12 @@ class PID(object):
         self.k1 = self.kc * self.td / self.ts
 
     def calc(self, xk, tset):
-
         ek = 0.0
-        ek = tset - xk # calculate e[k] = SP[k] - PV[k]
-
-        self.pp = self.kc * (PID.xk_1 - xk) # y[k] = y[k-1] + Kc*(PV[k-1] - PV[k])
+        ek = tset - xk  # calculate e[k] = SP[k] - PV[k]
+        self.pp = self.kc * (PID.xk_1 - xk)  # y[k] = y[k-1] + Kc*(PV[k-1] - PV[k])
         self.pi = self.k0 * ek  # + Kc*Ts/Ti * e[k]
         self.pd = self.k1 * (2.0 * PID.xk_1 - xk - PID.xk_2)
         PID.yk += self.pp + self.pi + self.pd
-
-
         PID.xk_2 = PID.xk_1  # PV[k-2] = PV[k-1]
         PID.xk_1 = xk    # PV[k-1] = PV[k]
 
